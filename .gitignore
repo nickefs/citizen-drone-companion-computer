@@ -1,0 +1,21 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+*.log
+
+# Runtime-generated data
+uploads/
+output/
+photos/
+worker_command.json
+worker_status.json
+status.txt
+done.flag
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
