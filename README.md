@@ -4,6 +4,16 @@ Raspberry Pi companion-computer software for autonomous UAV survey missions.
 
 The system provides a local web portal for uploading survey waypoints, converts them into an ArduPilot/Mission Planner mission, uploads the mission to the flight controller over MAVLink, controls the Raspberry Pi camera, and saves geotagged survey images using flight-controller feedback.
 
+## Related Project: Survey Mission Planner
+
+This repository is the onboard software component of a complete UAV mapping workflow.
+
+Survey routes are generated using the [UAV Survey Waypoint Generator](https://github.com/nickefs/citizen-drone-survey-planner).
+
+The resulting CSV mission is imported into the companion computer, converted to an ArduPilot-compatible format, and uploaded to the flight controller through MAVLink.
+
+The companion computer also handles camera control, image capture, and geographic metadata recording.
+
 ## Main Features
 
 - Local Flask web portal for mission upload and control
