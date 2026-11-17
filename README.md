@@ -67,13 +67,16 @@ uav-companion-computer/
 ├── src/
 │   ├── converter_to_mission.py
 │   ├── fc_worker.py
+│   ├── mission_info.py
 │   └── mission_portal.py
 ├── config/
 │   └── drone_xmp.config
 ├── scripts/
+│   ├── mission_script2.sh
 │   ├── run_local.sh
 │   └── setup_rpi.sh
 ├── docs/
+│   ├── CHANGES.md
 │   └── screenshots/
 ├── requirements.txt
 ├── .gitignore
@@ -150,17 +153,19 @@ pip install -r requirements.txt
 
 Install Raspberry Pi camera packages and ExifTool through the OS package manager as required.
 
-An optional provisioning helper is included at:
+A provisioning helper is included. It installs the packages, creates the Wi-Fi hotspot and enables a
+`drone-mission` service that starts the hotspot, worker and portal on every boot:
 
-```text
-scripts/setup_rpi.sh
+```bash
+HOTSPOT_PASSWORD='choose-a-password' ./scripts/setup_rpi.sh
 ```
-
-It is not part of the normal runtime.
 
 ## Run
 
-From the repository root:
+After provisioning, everything starts on boot from `scripts/mission_script2.sh` and the portal is at
+`http://192.168.4.1:8000` on the `Pi-Upload` hotspot.
+
+To run without the hotspot (for example on the bench), from the repository root:
 
 ```bash
 chmod +x scripts/run_local.sh
@@ -168,6 +173,9 @@ chmod +x scripts/run_local.sh
 ```
 
 The web portal is then available on port `8000`.
+
+See `docs/CHANGES.md` for what changed in this release, including camera triggering in distance mode:
+the camera is switched on when the drone reaches each `SurveyEntry` and takes one photo there.
 
 ## Data Flow
 
